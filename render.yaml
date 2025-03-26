@@ -2,10 +2,10 @@ services:
   - type: web
     name: puppeteer-api
     env: node
+    nodeVersion: 18.20.0
     plan: free
     buildCommand: npm install
     startCommand: node index.js
     envVars:
       - key: NODE_ENV
         value: production
-    nodeVersion: 18.20.0

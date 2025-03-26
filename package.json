@@ -1,24 +1,14 @@
 {
   "name": "puppeteer-api",
   "version": "1.0.0",
+  "description": "API Puppeteer pour screenshots depuis HTML",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Pauline-pdt/puppeteer-api.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Pauline-pdt/puppeteer-api/issues"
-  },
-  "homepage": "https://github.com/Pauline-pdt/puppeteer-api#readme",
-  "description": "",
   "dependencies": {
-    "express": "^4.21.2",
-    "puppeteer": "^20.8.1"
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "puppeteer": "20.8.1"
   }
 }

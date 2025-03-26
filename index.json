@@ -12,7 +12,7 @@ app.post("/screenshot", async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: puppeteer.executablePath(), // 🔧 pour Render
+      executablePath: puppeteer.executablePath(),
       headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });

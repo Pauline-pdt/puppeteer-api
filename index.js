@@ -1,6 +1,5 @@
 const express = require("express");
-const puppeteer = require("puppeteer-core");
-const chrome = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -12,12 +11,9 @@ app.post("/screenshot", async (req, res) => {
   if (!html) return res.status(400).send("Missing HTML");
 
   try {
-    const executablePath = (await chrome.executablePath) || "/usr/bin/google-chrome-stable";
-
     const browser = await puppeteer.launch({
-      args: chrome.args,
-      executablePath,
-      headless: chrome.headless
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
 
     const page = await browser.newPage();

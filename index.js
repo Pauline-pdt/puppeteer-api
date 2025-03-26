@@ -12,9 +12,11 @@ app.post("/screenshot", async (req, res) => {
   if (!html) return res.status(400).send("Missing HTML");
 
   try {
+    const executablePath = (await chrome.executablePath) || "/usr/bin/google-chrome-stable";
+
     const browser = await puppeteer.launch({
       args: chrome.args,
-      executablePath: await chrome.executablePath,
+      executablePath,
       headless: chrome.headless
     });
 

@@ -1,14 +1,18 @@
 {
-  "name": "puppeteer-api",
-  "version": "1.0.0",
-  "description": "API Puppeteer pour screenshots depuis HTML",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "puppeteer": "^20.8.1"
+    "name": "puppeteer-api",
+    "version": "1.0.0",
+    "description": "API Puppeteer pour screenshots depuis HTML",
+    "puppeteer": {
+      "default_browser_revision": "114.0.5735.133"
+    },
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "body-parser": "^1.20.2",
+      "express": "^4.18.2",
+      "puppeteer": "20.8.1"
+    }
   }
-}
+  

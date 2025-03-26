@@ -1,5 +1,6 @@
 const express = require("express");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chrome = require("chrome-aws-lambda");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -12,9 +13,9 @@ app.post("/screenshot", async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: puppeteer.executablePath(),
-      headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      args: chrome.args,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless
     });
 
     const page = await browser.newPage();

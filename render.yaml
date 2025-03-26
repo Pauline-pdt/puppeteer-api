@@ -5,7 +5,7 @@ services:
     plan: free
     buildCommand: npm install
     startCommand: node index.js
-    nodeVersion: 18.20.0
     envVars:
       - key: NODE_ENV
         value: production
+    nodeVersion: 18.20.0

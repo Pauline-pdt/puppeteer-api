@@ -1,9 +1,8 @@
-FROM node:18-slim
+FROM node:18-bullseye-slim
 
-# Installe Chromium et ses dépendances système AVANT npm install
+# Installe Chromium et ses dépendances
 RUN apt-get update && apt-get install -y \
-  wget \
-  ca-certificates \
+  chromium \
   fonts-liberation \
   libappindicator3-1 \
   libasound2 \
@@ -20,16 +19,21 @@ RUN apt-get update && apt-get install -y \
   libxrandr2 \
   xdg-utils \
   libgbm1 \
-  chromium \
+  wget \
+  curl \
   && rm -rf /var/lib/apt/lists/*
 
+# Définit le dossier de travail
 WORKDIR /app
 
+# Copie et installe les dépendances
 COPY package.json .
 RUN npm install
 
+# Copie le reste des fichiers
 COPY . .
 
 EXPOSE 3000
 
+# Lance l'application
 CMD ["node", "index.js"]

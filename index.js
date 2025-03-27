@@ -15,8 +15,9 @@ app.post('/screenshot', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       args: chromium.args,
-      executablePath: await chromium.executablePath,
+      executablePath: (await chromium.executablePath) || '/usr/bin/chromium-browser',
       headless: chromium.headless,
+      defaultViewport: { width: 1200, height: 800 }
     });
 
     const page = await browser.newPage();

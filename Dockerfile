@@ -1,6 +1,6 @@
 FROM node:18-slim
 
-# Installe les dépendances système pour Chromium
+# Installe Chromium et ses dépendances
 RUN apt-get update && apt-get install -y \
   chromium \
   fonts-liberation \
@@ -23,6 +23,9 @@ RUN apt-get update && apt-get install -y \
   curl \
   --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
+
+# Empêche Puppeteer de re-télécharger Chromium
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 WORKDIR /app
 

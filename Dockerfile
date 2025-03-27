@@ -1,6 +1,5 @@
 FROM node:18-bullseye-slim
 
-# Installe Chromium et ses dépendances
 RUN apt-get update && apt-get install -y \
   chromium \
   fonts-liberation \
@@ -23,17 +22,13 @@ RUN apt-get update && apt-get install -y \
   curl \
   && rm -rf /var/lib/apt/lists/*
 
-# Définit le dossier de travail
 WORKDIR /app
 
-# Copie et installe les dépendances
 COPY package.json .
 RUN npm install
 
-# Copie le reste des fichiers
 COPY . .
 
 EXPOSE 3000
 
-# Lance l'application
 CMD ["node", "index.js"]

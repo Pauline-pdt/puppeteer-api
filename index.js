@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const path = require('path');
+const puppeteer = require('puppeteer-core');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +14,8 @@ app.post('/screenshot', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      executablePath: '/usr/bin/chromium',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });

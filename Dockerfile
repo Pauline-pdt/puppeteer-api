@@ -1,5 +1,6 @@
-FROM node:18-bullseye-slim
+FROM node:18-slim
 
+# Installe les dépendances système pour Chromium
 RUN apt-get update && apt-get install -y \
   chromium \
   fonts-liberation \
@@ -20,7 +21,8 @@ RUN apt-get update && apt-get install -y \
   libgbm1 \
   wget \
   curl \
-  && rm -rf /var/lib/apt/lists/*
+  --no-install-recommends && \
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

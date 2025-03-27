@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,9 +13,8 @@ app.post('/screenshot', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      args: chromium.args,
-      executablePath: (await chromium.executablePath) || '/usr/bin/chromium-browser',
-      headless: chromium.headless,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: true,
       defaultViewport: { width: 1200, height: 800 }
     });
 
@@ -29,7 +27,7 @@ app.post('/screenshot', async (req, res) => {
     res.set('Content-Type', 'image/png');
     res.send(buffer);
   } catch (err) {
-    console.error(err);
+    console.error("🚨 Puppeteer error:", err);
     res.status(500).send('Error generating screenshot: ' + err.message);
   }
 });
